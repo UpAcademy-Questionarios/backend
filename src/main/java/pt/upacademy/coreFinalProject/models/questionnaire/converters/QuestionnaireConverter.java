@@ -138,7 +138,7 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 	public List<QuestionnairePreviewDTO> questListToPreviewDTO(List<Questionnaire> entities){
 		
 		return entities.stream().map(quest -> {
-			long userId = accountQuestionnaireRepository.getEntity(quest.getAccountId()).getId();
+			long userId = accountQuestionnaireRepository.getEntity(quest.getAccountId()).getUserId();
 			String userName = userRepository.getEntity(userId).getName();
 			QuestionnairePreviewDTO questPreviewDTO = new QuestionnairePreviewDTO(
 				quest.getId(),
