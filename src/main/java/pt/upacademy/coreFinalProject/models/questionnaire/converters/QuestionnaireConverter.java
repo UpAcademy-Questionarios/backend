@@ -53,6 +53,7 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 		questionnaire.setLastModifiedDate(dto.getLastModifiedDate());
 		questionnaire.setTemplate(dto.isTemplate());
 		questionnaire.setAnswerTime(dto.getAnswerTime());
+		questionnaire.setTargetAcademy(dto.getTargetAcademy() > 0 ? dto.getTargetAcademy() : 0);
 		return questionnaire;
 	}
 	
@@ -91,6 +92,7 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 		questionnaireDTO.setLastModifiedDate(entity.getLastModifiedDate());
 		questionnaireDTO.setTemplate(entity.getTemplate());
 		questionnaireDTO.setAnswerTime(entity.getAnswerTime());
+		questionnaireDTO.setTargetAcademy(entity.getTargetAcademy() > 0 ? entity.getTargetAcademy() : 0);
 		return questionnaireDTO;
 	}
 	
@@ -127,7 +129,8 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 						quest.getCreateDate(),
 						quest.getLastModifiedDate(),
 						quest.getTemplate(),
-						quest.getAnswerTime()
+						quest.getAnswerTime(),
+						(quest.getTargetAcademy() > 0) ? quest.getTargetAcademy() : 0
 						)
 						).collect(Collectors.toList());
 	}
@@ -147,7 +150,8 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 				quest.getLastModifiedDate(),
 				quest.getScore(),
 				quest.getAccountId(),
-				userName
+				userName,
+				quest.getTargetAcademy()
 				);
 			return questPreviewDTO;
 			}).collect(Collectors.toList());

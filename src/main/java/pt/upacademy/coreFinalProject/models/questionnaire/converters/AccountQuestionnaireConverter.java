@@ -37,6 +37,7 @@ public class AccountQuestionnaireConverter extends EntityConverter<AccountQuesti
 		accountDTO.setId(entity.getId());
 		accountDTO.setPendingQuestionnaires(questionnaireConverter.questListToPreviewDTO(questionnaireService.getEmptyQuestionnairesByAccountId(entity.getId())));
 		accountDTO.setUserId(entity.getUserId());
+		accountDTO.setUserAcademies(entity.getUserAcademies());
 		return accountDTO;
 	}
 	

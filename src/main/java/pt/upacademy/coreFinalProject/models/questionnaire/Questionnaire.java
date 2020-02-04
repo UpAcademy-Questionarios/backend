@@ -50,11 +50,12 @@ public class Questionnaire extends EntityRoot{
 	private long templateId;
 	private boolean template;
 	private long answerTime;
+	private long targetAcademy;
 	
 	public Questionnaire() {}
 
 	public Questionnaire(long id, Set<Question> questionList, String name, long accountId, Qtype qType, String[] editPrivacy,
-			String[] viewPrivacy, long templateId, boolean template, long answerTime) {
+			String[] viewPrivacy, long templateId, boolean template, long answerTime, long targetAcademy) {
 		setId(id);
 		this.questionList = questionList;
 		this.name = name;
@@ -65,6 +66,7 @@ public class Questionnaire extends EntityRoot{
 		this.templateId = templateId;
 		this.template = template;
 		this.answerTime = answerTime;
+		this.targetAcademy = targetAcademy;
 	}
 
 	public Questionnaire(long id, String name, Qtype qType, String[] viewPrivacy) {
@@ -73,7 +75,15 @@ public class Questionnaire extends EntityRoot{
 		this.qType = qType;
 		this.viewPrivacy = viewPrivacy;
 	}
-	
+		
+	public long getTargetAcademy() {
+		return targetAcademy;
+	}
+
+	public void setTargetAcademy(long targetAcademy) {
+		this.targetAcademy = targetAcademy;
+	}
+
 	public long getAnswerTime() {
 		return answerTime;
 	}
