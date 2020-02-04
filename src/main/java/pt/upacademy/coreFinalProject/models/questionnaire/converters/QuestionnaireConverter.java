@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 import pt.upacademy.coreFinalProject.models.core.converters.EntityConverter;
+import pt.upacademy.coreFinalProject.models.questionnaire.AccountQuestionnaire;
 import pt.upacademy.coreFinalProject.models.questionnaire.Answer;
 import pt.upacademy.coreFinalProject.models.questionnaire.Question;
 import pt.upacademy.coreFinalProject.models.questionnaire.Questionnaire;
@@ -16,7 +17,6 @@ import pt.upacademy.coreFinalProject.models.questionnaire.DTOs.QuestionnaireDTO;
 import pt.upacademy.coreFinalProject.models.questionnaire.DTOs.QuestionnairePreviewDTO;
 import pt.upacademy.coreFinalProject.repositories.core.UserRepository;
 import pt.upacademy.coreFinalProject.repositories.questionnaire.AccountQuestionnaireRepository;
-import pt.upacademy.coreFinalProject.repositories.questionnaire.QuestionnaireRepository;
 
 public class QuestionnaireConverter extends EntityConverter<Questionnaire, QuestionnaireDTO>{
 
@@ -25,7 +25,6 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 	
 	@Inject
 	UserRepository userRepository;
-	
 	
 	@Override
 	public Questionnaire toEntity(QuestionnaireDTO dto) {
@@ -53,7 +52,6 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 		questionnaire.setLastModifiedDate(dto.getLastModifiedDate());
 		questionnaire.setTemplate(dto.isTemplate());
 		questionnaire.setAnswerTime(dto.getAnswerTime());
-		questionnaire.setTargetAcademy(dto.getTargetAcademy() > 0 ? dto.getTargetAcademy() : 0);
 		return questionnaire;
 	}
 	
@@ -92,7 +90,6 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 		questionnaireDTO.setLastModifiedDate(entity.getLastModifiedDate());
 		questionnaireDTO.setTemplate(entity.getTemplate());
 		questionnaireDTO.setAnswerTime(entity.getAnswerTime());
-		questionnaireDTO.setTargetAcademy(entity.getTargetAcademy() > 0 ? entity.getTargetAcademy() : 0);
 		return questionnaireDTO;
 	}
 	
@@ -129,17 +126,15 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 						quest.getCreateDate(),
 						quest.getLastModifiedDate(),
 						quest.getTemplate(),
-						quest.getAnswerTime(),
-						(quest.getTargetAcademy() > 0) ? quest.getTargetAcademy() : 0
-						)
-						).collect(Collectors.toList());
+						quest.getAnswerTime()
+						)).collect(Collectors.toList());
 	}
 	
 	public List<QuestionnairePreviewDTO> questListToPreviewDTO(List<Questionnaire> entities){
 		
 		return entities.stream().map(quest -> {
-			long userId = accountQuestionnaireRepository.getEntity(quest.getAccountId()).getUserId();
-			String userName = userRepository.getEntity(userId).getName();
+			AccountQuestionnaire account = accountQuestionnaireRepository.getEntity(quest.getAccountId());
+			String userName = userRepository.getEntity(account.getUserId()).getName();
 			QuestionnairePreviewDTO questPreviewDTO = new QuestionnairePreviewDTO(
 				quest.getId(),
 				quest.getName(),
@@ -151,7 +146,7 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 				quest.getScore(),
 				quest.getAccountId(),
 				userName,
-				quest.getTargetAcademy()
+				account.getUserAcademies()
 				);
 			return questPreviewDTO;
 			}).collect(Collectors.toList());
