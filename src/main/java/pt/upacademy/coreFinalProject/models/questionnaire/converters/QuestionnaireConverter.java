@@ -44,7 +44,7 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 		questionnaire.setViewPrivacy(dto.getViewPrivacy());
 		questionnaire.setAnswerList(
 				dto.getAnswerList().stream().map(a -> new Answer(
-				a.getId() > 0 ? a.getId() : 0, questionnaire, a.getAnswer(), a.getQuestionId() > 0 ? a.getQuestionId() : 0, a.isRightAnswer()
+				a.getId() > 0 ? a.getId() : 0, questionnaire, a.getAnswer(), a.getQuestionId() > 0 ? a.getQuestionId() : 0, a.isRightAnswer(), a.getOrderNumber()
 				)).collect(Collectors.toSet()));
 		questionnaire.setScore(dto.getScore());
 		questionnaire.setTemplateId(dto.getTemplateId());
@@ -82,6 +82,7 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 			answerDTO.setAnswer(a.getAnswer());
 			answerDTO.setQuestionId(a.getQuestionId());
 			answerDTO.setRightAnswer(a.isRightAnswer());
+			answerDTO.setOrderNumber(a.getOrderNumber());
 			return answerDTO;
 		}).collect(Collectors.toSet()));
 		questionnaireDTO.setScore(entity.getScore());
@@ -119,7 +120,8 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 								answer.getQuestionaire().getId(),
 								answer.getAnswer(),
 								answer.getQuestionId(),
-								answer.isRightAnswer()
+								answer.isRightAnswer(),
+								answer.getOrderNumber()
 								)).collect(Collectors.toSet()),
 						quest.getScore(),
 						quest.getTemplateId(),
