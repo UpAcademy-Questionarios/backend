@@ -133,8 +133,18 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 	public List<QuestionnairePreviewDTO> questListToPreviewDTO(List<Questionnaire> entities){
 		
 		return entities.stream().map(quest -> {
-			AccountQuestionnaire account = accountQuestionnaireRepository.getEntity(quest.getAccountId());
-			String userName = userRepository.getEntity(account.getUserId()).getName();
+			AccountQuestionnaire account = new AccountQuestionnaire();
+			String userName;
+			if (quest.getAccountId() !=0) {
+			account = accountQuestionnaireRepository.getEntity(quest.getAccountId());
+			userName = userRepository.getEntity(account.getUserId()).getName();
+			} else {
+				userName = null;
+				account.setUserAcademies(null);
+			}
+			if (quest.getAnonymous()){
+				
+			}
 			QuestionnairePreviewDTO questPreviewDTO = new QuestionnairePreviewDTO(
 				quest.getId(),
 				quest.getName(),
@@ -144,8 +154,8 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 				quest.getCreateDate(),
 				quest.getLastModifiedDate(),
 				quest.getScore(),
-				quest.getAccountId(),
-				userName,
+				(quest.getAnonymous()) ? 0 : quest.getAccountId(),
+				(quest.getAnonymous()) ? "Anónimo" : userName,
 				account.getUserAcademies()
 				);
 			return questPreviewDTO;

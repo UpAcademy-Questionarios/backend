@@ -56,6 +56,7 @@ public class Questionnaire extends EntityRoot{
 	private long templateId;
 	private boolean template;
 	private long answerTime;
+	private boolean anonymous;
 	
 	public Questionnaire() {}
 
@@ -176,6 +177,14 @@ public class Questionnaire extends EntityRoot{
 			return answer.isRightAnswer();
 		}).count() / (double)this.getAnswerList().size();
 		setScore((int)(score * 100.0));
+	}
+
+	public boolean getAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
 	}
 	
 }

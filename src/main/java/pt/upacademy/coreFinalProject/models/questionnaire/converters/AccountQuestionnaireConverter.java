@@ -31,6 +31,7 @@ public class AccountQuestionnaireConverter extends EntityConverter<AccountQuesti
 			
 			account.setUserId(dto.getUserId());
 			account.setUserAcademies(dto.getUserAcademies());
+			account.setImageLink(dto.getImageLink());
 //				account.setUserId(dto.getUserId());
 //				if (dto.getPendingQuentionnaires() != null) {
 //					account.setPendingQuentionnairesIds(dto.getPendingQuentionnaires().stream().mapToLong(pendingQuest -> pendingQuest.getId()).toArray());
@@ -46,6 +47,7 @@ public class AccountQuestionnaireConverter extends EntityConverter<AccountQuesti
 		accountDTO.setPendingQuestionnaires(questionnaireConverter.questListToPreviewDTO(questionnaireService.getEmptyQuestionnairesByAccountId(entity.getId())));
 		accountDTO.setUserId(entity.getUserId());
 		accountDTO.setUserAcademies(entity.getUserAcademies());
+		accountDTO.setImageLink(entity.getImageLink());
 		return accountDTO;
 	}
 	

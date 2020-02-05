@@ -25,6 +25,7 @@ public class AccountQuestionnaire extends EntityRoot {
 
 	private long userId;
 	private long[] userAcademies;
+	private String imageLink;
 
 	public AccountQuestionnaire() {}
 
@@ -48,6 +49,14 @@ public class AccountQuestionnaire extends EntityRoot {
 	
 	public void setUserAcademies(long[] userAcademies) {
 		this.userAcademies = userAcademies;
+	}
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 	
 }
