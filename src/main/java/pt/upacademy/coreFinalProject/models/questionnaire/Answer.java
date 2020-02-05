@@ -21,24 +21,33 @@ public class Answer extends EntityRoot{
 	private String[] answer;
 	private long questionId;
 	private boolean rightAnswer;
+	private int orderNumber;
 
 	public Answer() {}
 
-	public Answer(long id, Questionnaire questionnaire, String[] answer, long questionId, boolean rightAnswer) {
+	public Answer(long id, Questionnaire questionnaire, String[] answer, long questionId, boolean rightAnswer, int orderNumber) {
 		setId(id);
 		this.questionnaire = questionnaire;
 		this.answer = answer;
 		this.questionId = questionId;
 		this.rightAnswer = rightAnswer;
+		this.orderNumber = orderNumber;
 	}
-	
+
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
 	public Answer(Questionnaire questionnaire, String[] answer, long questionId, boolean rightAnswer) {
 		this.questionnaire = questionnaire;
 		this.answer = answer;
 		this.questionId = questionId;
 		this.rightAnswer = rightAnswer;
 	}
-
 	
 	public boolean isRightAnswer() {
 		return rightAnswer;
