@@ -83,9 +83,9 @@ public class QuestionnaireController extends EntityControllerDTO<QuestionnaireSe
     }
 	
 	@GET
-    @Path("/account/{id}/quizz")
+    @Path("/account/{id}/quizzes")
 	@Produces(MediaType.APPLICATION_JSON)
-    public List<QuestionnairePreviewDTO> getAllQuizzes(@PathParam("id") long id) {
+    public List<QuestionnairePreviewDTO> getAllQuizzesByAccountId(@PathParam("id") long id) {
 		return converter.questListToPreviewDTO(service.getAllQuizzesByAccountId(id));
 			
     }

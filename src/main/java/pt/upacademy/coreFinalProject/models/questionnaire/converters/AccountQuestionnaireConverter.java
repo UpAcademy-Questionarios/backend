@@ -17,18 +17,26 @@ public class AccountQuestionnaireConverter extends EntityConverter<AccountQuesti
 	
 	@Override
 	public AccountQuestionnaire toEntity(AccountQuestionnaireDTO dto) {
-		
-//		Account account =  new Account();
-//			if (dto.getId() > 0) {
-//				account.setId(dto.getId());
-//			}
-//			account.setUserId(dto.getUserId());
+//		Questionnaire questionnaire = new Questionnaire();
+//		if (dto.getId() > 0) {
+//			questionnaire.setId(dto.getId());
+//		}
+//		questionnaire.setQuestionList(
+		AccountQuestionnaire account =  new AccountQuestionnaire();
+			if (dto.getId() > 0) {
+				account.setId(dto.getId());
+			}
+//			questionnaire.setAccountId(dto.getAccountId());
+//			questionnaire.setqType(dto.getqType());
+			
+			account.setUserId(dto.getUserId());
+			account.setUserAcademies(dto.getUserAcademies());
 //				account.setUserId(dto.getUserId());
 //				if (dto.getPendingQuentionnaires() != null) {
 //					account.setPendingQuentionnairesIds(dto.getPendingQuentionnaires().stream().mapToLong(pendingQuest -> pendingQuest.getId()).toArray());
 //				}
 //				account.setUserAcademies(userAcademies);
-		return null;
+		return account;
 	}
 	
 	@Override

@@ -42,7 +42,17 @@ public class QuestionnaireRepository extends EntityRepository<Questionnaire>{
 	}
 	
 	public List<Questionnaire> getAllQuizzesByAccountId(long id) {
-		return entityManager.createNamedQuery(Questionnaire.GET_ALL_QUIZZES, Questionnaire.class).setParameter("type", Qtype.QUIZ).setParameter("id", id).getResultList();
+		return entityManager.createNamedQuery(Questionnaire.GET_ALL_QUIZZES_BY_ACCOUNT_ID, Questionnaire.class).setParameter("type", Qtype.QUIZ).setParameter("id", id).getResultList();
+	
+	}
+	
+	public List<Questionnaire> getAllQuizzesByTemplateId(long templateId) {
+		return entityManager.createNamedQuery(Questionnaire.GET_ALL_QUIZZES_BY_TEMPLATE_ID, Questionnaire.class).setParameter("type", Qtype.QUIZ).setParameter("templateId", templateId).getResultList();
+	
+	}
+	
+	public List<Questionnaire> getAllEvaluationsByTemplateId(long templateId) {
+		return entityManager.createNamedQuery(Questionnaire.GET_ALL_EVALUATIONS_BY_TEMPLATE_ID, Questionnaire.class).setParameter("type", Qtype.EVALUATION).setParameter("templateId", templateId).getResultList();
 	
 	}
 	

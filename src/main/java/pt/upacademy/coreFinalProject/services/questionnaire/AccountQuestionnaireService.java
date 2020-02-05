@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import pt.upacademy.coreFinalProject.models.core.User;
 import pt.upacademy.coreFinalProject.models.questionnaire.AccountQuestionnaire;
 import pt.upacademy.coreFinalProject.repositories.questionnaire.AccountQuestionnaireRepository;
@@ -60,16 +62,23 @@ public class AccountQuestionnaireService extends EntityService<AccountQuestionna
 		Collection<AccountQuestionnaire>  AllAccounts = get();
 		//Arrays.stream(AllAccounts).anyMatch(academy::equals);
 		//List<Long>
-		List<Long> distinctAcademies = new ArrayList<Long>();
+		List<User> usersFromAcademy = new ArrayList<User>();
 		for (AccountQuestionnaire account : AllAccounts) {
 			long[] arr = account.getUserAcademies();
-			List<Long> num = Collections.addAll(distinctAcademies, arr);
-			List<Long> lala = Arrays.stream(arr).collect(Collectors.toList());
+			Long[] arrObj = ArrayUtils.toObject(arr);
+			List<Long> list = Arrays.asList(arrObj);
+			if (list.contains(academy)) {
+				usersFromAcademy.add(userService.get(account.getUserId()));
+			}
+			System.out.println(usersFromAcademy);
+			
+//			List<Long> num = Collections.addAll(distinctAcademies, arr);
+//			List<Long> lala = Arrays.stream(arr).collect(Collectors.toList());
 			//if (Arrays.stream(account.getUserAcademies()).anyMatch(academy::equals));
 		}
 		//if (AllAccounts.contains(academy))
 		//Arrays.stream(arr).anyMatch(item::equals);
-	return null;
+		return usersFromAcademy;
 	
 	}
 }
