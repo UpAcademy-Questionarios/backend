@@ -148,7 +148,8 @@ public class QuestionnaireConverter extends EntityConverter<Questionnaire, Quest
 				quest.getScore(),
 				quest.getAccountId(),
 				userName,
-				account.getUserAcademies()
+				account.getUserAcademies(),
+				quest.getAnswerTime()
 				);
 			return questPreviewDTO;
 			}).collect(Collectors.toList());
