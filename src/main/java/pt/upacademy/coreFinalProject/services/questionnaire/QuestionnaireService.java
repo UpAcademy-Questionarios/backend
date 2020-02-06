@@ -88,13 +88,13 @@ public class QuestionnaireService extends EntityService<QuestionnaireRepository,
 			quest.setAccountId(id);
 			create(quest);
 		});
-		userIdsLong.forEach(userId -> {
-			try {
-				sendQuestionnaireInvitation(userService.get(userId));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});	
+//		userIdsLong.forEach(userId -> {
+//			try {
+//				sendQuestionnaireInvitation(userService.get(userId));
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		});	
 	}
 	
 	@Override

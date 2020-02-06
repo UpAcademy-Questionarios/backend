@@ -48,8 +48,8 @@ public class TemplateController extends EntityControllerDTO<QuestionnaireService
 	@GET
 	@Path("/{id}/evaluations")
 	@Produces(MediaType.APPLICATION_JSON)
-    public List<QuestionnairePreviewDTO> getAllEvaluationsByTemplateId(@PathParam("id") long id) {
-		return converter.questListToPreviewDTO(service.getAllEvaluationsByTemplateId(id));
+    public List<QuestionnaireDTO> getAllEvaluationsByTemplateId(@PathParam("id") long id) {
+		return converter.listToDTO(service.getAllEvaluationsByTemplateId(id));
     }
 	
 	

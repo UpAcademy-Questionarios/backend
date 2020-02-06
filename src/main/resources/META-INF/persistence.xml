@@ -22,13 +22,13 @@
 <!--                 value="rootroot" /> -->
              <property 
                  name="javax.persistence.schema-generation.database.action"
-                value="drop-and-create" />
+                value="none" />
             <!-- Configurações específicas do Hibernate -->
             <property name="hibernate.dialect"
                 value="org.hibernate.dialect.MySQL5InnoDBDialect" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="false" />
         </properties>
     </persistence-unit>
 </persistence>
