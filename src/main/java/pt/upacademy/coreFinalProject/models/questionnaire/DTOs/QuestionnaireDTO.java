@@ -18,6 +18,7 @@ public class QuestionnaireDTO extends EntityDTO{
 	private long templateId;
 	private boolean template;
 	private long answerTime;
+	private boolean anonymous;
 
 	public QuestionnaireDTO() {}
 
@@ -126,6 +127,14 @@ public class QuestionnaireDTO extends EntityDTO{
 
 	public void setTemplate(boolean template) {
 		this.template = template;
+	}
+
+	public boolean getAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
 	}
 	
 	

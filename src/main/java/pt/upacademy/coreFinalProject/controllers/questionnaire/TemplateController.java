@@ -37,4 +37,20 @@ public class TemplateController extends EntityControllerDTO<QuestionnaireService
     public QuestionnaireDTO getTemplateById(@PathParam("id") long id) {
 		return converter.toDTO(service.getTemplateById(id));
     }
+	
+	@GET
+	@Path("/{id}/quizzes")
+	@Produces(MediaType.APPLICATION_JSON)
+    public List<QuestionnairePreviewDTO> getAllQuizzesByTemplateById(@PathParam("id") long id) {
+		return converter.questListToPreviewDTO(service.getAllQuizzesByTemplateId(id));
+    }
+	
+	@GET
+	@Path("/{id}/evaluations")
+	@Produces(MediaType.APPLICATION_JSON)
+    public List<QuestionnairePreviewDTO> getAllEvaluationsByTemplateId(@PathParam("id") long id) {
+		return converter.questListToPreviewDTO(service.getAllEvaluationsByTemplateId(id));
+    }
+	
+	
 }

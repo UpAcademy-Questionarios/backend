@@ -8,6 +8,7 @@ public class AccountQuestionnaireDTO extends EntityDTO{
 	private long userId;
 	private List<QuestionnairePreviewDTO> pendingQuestionnaires;
 	private long[] userAcademies;
+	private String imageLink;
 		  	
 	public AccountQuestionnaireDTO() {}
 		  
@@ -41,6 +42,16 @@ public class AccountQuestionnaireDTO extends EntityDTO{
 
 	public void setPendingQuestionnaires(List<QuestionnairePreviewDTO> pendingQuentionnaires) {
 		this.pendingQuestionnaires = pendingQuentionnaires;
+	}
+
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 
 }
